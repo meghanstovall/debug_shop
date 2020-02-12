@@ -25,7 +25,7 @@ RSpec.describe "Merchant Items Index Page" do
       click_button "Create Item"
 
       created_item = Item.last
-
+      
       expect(current_path).to eq("/merchants/#{@meg.id}/items")
       expect(page).to have_content(created_item.name)
       expect(page).to have_content(created_item.price)

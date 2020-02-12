@@ -13,7 +13,7 @@ RSpec.describe "Merchant Items Index Page" do
     end
 
     it 'shows me a list of that merchants items' do
-      visit "merchants/#{@meg.id}/items"
+      visit "/merchants/#{@meg.id}/items"
 
       expect(page).to have_content(@tire.name)
       expect(page).to have_content(@tire.price)
@@ -32,7 +32,7 @@ RSpec.describe "Merchant Items Index Page" do
 
     it 'has a link to add a new item for that merchant' do
 
-      visit "merchants/#{@meg.id}/items"
+      visit "/merchants/#{@meg.id}/items"
 
       click_on "Add New Item"
 

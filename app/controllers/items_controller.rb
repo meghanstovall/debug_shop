@@ -1,6 +1,7 @@
 class ItemsController<ApplicationController
 
   def new
+    require "pry"; binding.pry
     if params[:merchant_id]
       @merchant = Merchant.find(params[:merchant_id])
     end
@@ -8,7 +9,12 @@ class ItemsController<ApplicationController
 
   def create
     merchant = Merchant.find(params[:merchant_id])
-    Item.create(item_params)
+    Item.create(name: params[:name],
+              description: params[:description],
+              price: params[:price],
+              image: params[:image],
+              inventory: params[:inventory],
+              active_inactive: true)
     redirect_to "/merchants/#{merchant.id}/items"
   end
 
@@ -33,7 +39,7 @@ class ItemsController<ApplicationController
   private
 
   def item_params
-    params.permit(:name, :description, :price, :image, :inventory)
+    params.permit(:name, :description, :price, :image, :inventory, active_inactive: true)
   end
 
 

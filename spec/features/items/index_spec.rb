@@ -24,6 +24,7 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_content("Active")
         expect(page).to have_link("Meg's Bike Shop")
       end
+
       within "#item-#{@tire.id}" do
         expect(page).to have_content("Gatorskins")
         expect(page).to have_content("They'll never pop!")
@@ -32,6 +33,7 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_content("Active")
         expect(page).to have_link("Meg's Bike Shop")
       end
+
       within "#item-#{@shifter.id}" do
         expect(page).to have_content("Shimano Shifters")
         expect(page).to have_content("It'll always shift!")
@@ -40,6 +42,7 @@ RSpec.describe "Items Index Page" do
         expect(page).to have_content("Inactive")
         expect(page).to have_link("Meg's Bike Shop")
       end
+
       within "#item-#{@pull_toy.id}" do
         expect(page).to have_content("Pull Toy")
         expect(page).to have_content("Great pull toy!")

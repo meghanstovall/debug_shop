@@ -4,15 +4,18 @@ class MerchantsController <ApplicationController
   end
 
   def create
-    Merchants.create(merchant_params)
+    merchant = Merchant.new(merchant_params)
+    merchant.save
+
     redirect_to '/merchants'
   end
 
   def edit
-    @merchant = Merchant.find(params[:id])
+    @merchant = Merchant.find(params[:merchant_id])
   end
 
   def index
+    @merchants = Merchant.all
   end
 
   def show
@@ -21,20 +24,24 @@ class MerchantsController <ApplicationController
 
   def update
     merchant = Merchant.find(params[:id])
-    update(merchant_params)
+    merchant.update(merchant_params)
+    merchant.save
+
     redirect_to "/merchants/#{params[:id]}"
   end
 
   def destroy
-    Item.delete(Item.where(merchant_id: params[:id]))
+    item = Item.where(merchant_id: params[:id])
+    Item.delete(item)
     Merchant.destroy(params[:id])
+
     redirect_to '/merchants'
   end
 
   private
 
   def merchant_params
-    params.permit(:name, :address, :city, :state, :zipcode)
+    params.permit(:name, :address, :city, :state, :zip)
   end
 
 end

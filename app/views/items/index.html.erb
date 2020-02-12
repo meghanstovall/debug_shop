@@ -3,12 +3,18 @@
 
 <h1>All Items List</h1>
 
-<% @item.each do |item| %>
-  <h2> <%= link_to item.name, "/items/#{item.id}"%></h2>
-  <ul><%= item.description %></ul>
-  <ul><%= item.price %></ul>
-  <ul><%= item.inventory %></ul>
-  <ul><%= item.active_inactive %></ul>
-  <ul><%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></ul>
-  <img src= <%= item.image %>>
+<% @items.each do |item| %>
+  <section id="item-<%= item.id %>">
+    <h2> <%= link_to item.name, "/items/#{item.id}"%></h2>
+    <ul><%= item.description %></ul>
+    <ul>Price: $<%= item.price %>.00</ul>
+    <ul>Inventory: <%= item.inventory %></ul>
+    <% if item.active_inactive %>
+      <ul>Active</ul>
+    <% else %>
+      <ul>Inactive</ul>
+    <% end %>
+    <ul><%= link_to item.merchant.name, "/merchants/#{item.merchant.id}" %></ul>
+    <img src= <%= item.image %>>
+  </section>
 <% end %>
